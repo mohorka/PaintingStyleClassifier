@@ -5,7 +5,7 @@ from keras.applications.xception import Xception, preprocess_input as xception_i
 from keras.applications.resnet import ResNet50,  preprocess_input as resnet50_input
 from keras.applications.inception_v3 import InceptionV3, preprocess_input as inception_input
 from keras.applications.inception_resnet_v2 import InceptionResNetV2, preprocess_input as inception_resnet_input
-from config.config import VGG_RESIZE, INCEPTION_RESIZE, RESNET_RESIZE
+from core.config.config import VGG_RESIZE, INCEPTION_RESIZE, RESNET_RESIZE
 from keras.models import Model
 import cv2 as cv
 
@@ -78,6 +78,10 @@ def inception_resnet_extractor(img):
     features = model.predict(img)
     return features
 
+def feature_extract(img, model):
+    img = inception_resnet_input(img)
+    features = model.predict(img)
+    return features
 
 
 
